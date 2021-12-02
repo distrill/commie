@@ -1,4 +1,4 @@
-const {readFile}  = require('fs/promises');
+import {readFile}  from 'fs/promises';
 
 async function go() {
   let h = 0;
