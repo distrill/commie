@@ -20,7 +20,7 @@ def getGreatestBitCriteria(integerSet: set[int], start: int):
     currentCeiling = start
     currentFloor = 0
     currentMiddle = average([currentFloor, currentCeiling])
-    while currentCeiling - currentFloor > 1:
+    while currentCeiling - currentFloor > 1 and len(currentSet) != 1:
         lessThan = [n for n in currentSet if n < currentMiddle]
         greaterThan = [n for n in currentSet if n >= currentMiddle]
         if len(lessThan) > len(greaterThan):
