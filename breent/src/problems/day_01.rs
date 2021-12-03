@@ -9,7 +9,7 @@ impl Day01 {
     }
 }
 
-impl Day for Day01 {
+impl Day<i32> for Day01 {
     fn new() -> Day01 {
         Day01 {}
     }
@@ -18,7 +18,7 @@ impl Day for Day01 {
         "01".to_string()
     }
 
-    fn run_01(&self) {
+    fn run_01(&self) -> i32 {
         let data = &self.init_data();
 
         let mut sum = 0;
@@ -29,10 +29,10 @@ impl Day for Day01 {
             }
         }
 
-        self.log_01(sum);
+        sum
     }
 
-    fn run_02(&self) {
+    fn run_02(&self) -> i32 {
         let data = &self.init_data();
 
         let mut sum = 0;
@@ -45,6 +45,6 @@ impl Day for Day01 {
             }
         }
 
-        self.log_02(sum);
+        sum
     }
 }

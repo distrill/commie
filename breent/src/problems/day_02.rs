@@ -2,7 +2,7 @@ use crate::day::Day;
 
 pub struct Day02 {}
 
-impl Day for Day02 {
+impl Day<i32> for Day02 {
     fn new() -> Day02 {
         Day02 {}
     }
@@ -11,7 +11,7 @@ impl Day for Day02 {
         "02".to_string()
     }
 
-    fn run_01(&self) {
+    fn run_01(&self) -> i32 {
         let data = &self.load_data();
 
         let mut v: i32 = 0;
@@ -37,10 +37,10 @@ impl Day for Day02 {
             }
         }
 
-        self.log_01(h * v);
+        h * v
     }
 
-    fn run_02(&self) {
+    fn run_02(&self) -> i32 {
         let data = &self.load_data();
 
         let mut v: i32 = 0;
@@ -68,6 +68,6 @@ impl Day for Day02 {
             }
         }
 
-        self.log_02(h * v);
+        h * v
     }
 }
