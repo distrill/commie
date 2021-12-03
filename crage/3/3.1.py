@@ -34,13 +34,7 @@ def getBinaryCounts(file: TextIOWrapper):
     return binaryCounts
 
 def getGreaterOccurrenceBinary(binaryCounts: dict[int, Values]):
-    greaterOccurrenceBinary: str = ""
-    for _, binaries in binaryCounts.items():
-        if binaries.zeroes < binaries.ones:
-            greaterOccurrenceBinary += eValues.ONE.value
-        else:
-            greaterOccurrenceBinary += eValues.ZERO.value
-    return greaterOccurrenceBinary
+    return "".join([eValues.ONE.value if binaries.zeroes < binaries.ones else eValues.ZERO.value for _, binaries in binaryCounts.items()])
 
 def getPowerConsumption(filename: str):
     inputFile = open(filename, 'r')
