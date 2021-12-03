@@ -3,7 +3,7 @@ use std::{
     io::{prelude::*, BufReader},
 };
 
-pub trait Day {
+pub trait Day<T: std::fmt::Display> {
     fn new() -> Self;
 
     fn get_day_name(&self) -> String;
@@ -17,15 +17,12 @@ pub trait Day {
             .collect()
     }
 
-    fn run_01(&self);
-
-    fn run_02(&self);
-
-    fn log_01<T: std::fmt::Display>(&self, result: T) {
-        println!("{}.1 - {}", self.get_day_name(), result);
+    fn run(&self) {
+        println!("{}.1 - {}", self.get_day_name(), self.run_01());
+        println!("{}.2 - {}\n", self.get_day_name(), self.run_02());
     }
 
-    fn log_02<T: std::fmt::Display>(&self, result: T) {
-        println!("{}.2 - {}\n", self.get_day_name(), result);
-    }
+    fn run_01(&self) -> T;
+
+    fn run_02(&self) -> T;
 }
