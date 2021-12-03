@@ -19,20 +19,19 @@ impl Day<i32> for Day03 {
 
         // we assume every row has the same length
         for i in 0..data[0].len() {
-            let mut zeros = 0;
-            let mut ones = 0;
+            let mut c = 0;
             for row in data {
                 // we assume the only characters are 0 and 1
                 if row.chars().nth(i).unwrap() == '0' {
-                    zeros += 1;
+                    c += 1;
                 } else {
-                    ones += 1;
+                    c -= 1;
                 }
             }
             // we assume there will be no ties, because we have no information
             // about how to break them
-            common.push(if zeros > ones { '0' } else { '1' });
-            uncommon.push(if zeros > ones { '1' } else { '0' });
+            common.push(if c > 0 { '0' } else { '1' });
+            uncommon.push(if c < 0 { '0' } else { '1' });
         }
 
         let gamma = i32::from_str_radix(common.as_str(), 2).unwrap();
