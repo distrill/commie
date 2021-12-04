@@ -11,6 +11,8 @@ class Node():
         self.checked = False
 
 class Board():
+    count = 0
+    id: int
     nodes: dict[int, Node]
     columnCounts: dict[int, int]
     rowCounts: dict[int, int]
@@ -21,6 +23,8 @@ class Board():
         self.rowCounts: dict[int, int] = {}
         self.nodes = self.initializeNodes(values)
         self.sideLength = sqrt(len(self.nodes))
+        self.id = Board.count
+        Board.count += 1
 
     def initializeNodes(self, values: list[list[int]]):
         nodes: dict[int, Node] = {}
@@ -81,12 +85,19 @@ def playGame(filename: str):
     with open(filename, 'r') as file:
         bingoDrawsLine = file.readline().split(",")
         bingoDraws = list(map(int, bingoDrawsLine))
-        boards: list[Board] = initializeBoards(file)
+        boards: set[Board] = initializeBoards(file)
         for bingoDraw in bingoDraws:
-            for board in boards:
-                board.updateCounts(bingoDraw)
-                if board.checkIfBoardComplete(bingoDraw):
-                    return board.sumBoardUnmarked() * bingoDraw
+            if len(boards) == 1:
+                loser = boards.pop()
+                loser.updateCounts(bingoDraw)
+                boards.append(loser)
+                if loser.checkIfBoardComplete(bingoDraw):
+                    return loser.sumBoardUnmarked() * bingoDraw
+            else:
+                for board in list(boards):
+                    board.updateCounts(bingoDraw)
+                    if board.checkIfBoardComplete(bingoDraw):
+                        boards.remove(board)
 
 print(playGame('./crage/4/input.txt'))
     
