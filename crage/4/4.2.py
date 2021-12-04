@@ -11,8 +11,6 @@ class Node():
         self.checked = False
 
 class Board():
-    count = 0
-    id: int
     nodes: dict[int, Node]
     columnCounts: dict[int, int]
     rowCounts: dict[int, int]
@@ -23,8 +21,6 @@ class Board():
         self.rowCounts: dict[int, int] = {}
         self.nodes = self.initializeNodes(values)
         self.sideLength = sqrt(len(self.nodes))
-        self.id = Board.count
-        Board.count += 1
 
     def initializeNodes(self, values: list[list[int]]):
         nodes: dict[int, Node] = {}
@@ -90,9 +86,9 @@ def playGame(filename: str):
             if len(boards) == 1:
                 loser = boards.pop()
                 loser.updateCounts(bingoDraw)
-                boards.append(loser)
                 if loser.checkIfBoardComplete(bingoDraw):
                     return loser.sumBoardUnmarked() * bingoDraw
+                boards.append(loser)
             else:
                 for board in list(boards):
                     board.updateCounts(bingoDraw)
