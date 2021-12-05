@@ -45,7 +45,7 @@ class Board():
                     self.rowCounts[node.y] = 1
                 node.checked = True
     
-    def checkIfBoardComplete(self, value: int):
+    def isBingo(self, value: int):
         if value in self.nodes:
             node = self.nodes[value]
             if self.columnCounts[node.x] == self.sideLength or self.rowCounts[node.y] == self.sideLength:
@@ -86,13 +86,13 @@ def playGame(filename: str):
             if len(boards) == 1:
                 loser = boards.pop()
                 loser.updateCounts(bingoDraw)
-                if loser.checkIfBoardComplete(bingoDraw):
+                if loser.isBingo(bingoDraw):
                     return loser.sumBoardUnmarked() * bingoDraw
                 boards.append(loser)
             else:
                 for board in list(boards):
                     board.updateCounts(bingoDraw)
-                    if board.checkIfBoardComplete(bingoDraw):
+                    if board.isBingo(bingoDraw):
                         boards.remove(board)
 
 print(playGame('./crage/4/input.txt'))
