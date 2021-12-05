@@ -52,7 +52,7 @@ class Board():
                 return True
         return False
 
-    def sumBoardUnmarked(self):
+    def sumUnmarked(self):
         sum = 0
         for val, node in self.nodes.items():
             if not node.checked:
@@ -87,7 +87,7 @@ def playGame(filename: str):
                 loser = boards.pop()
                 loser.updateCounts(bingoDraw)
                 if loser.isBingo(bingoDraw):
-                    return loser.sumBoardUnmarked() * bingoDraw
+                    return loser.sumUnmarked() * bingoDraw
                 boards.append(loser)
             else:
                 for board in list(boards):
