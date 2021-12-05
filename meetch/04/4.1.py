@@ -1,21 +1,21 @@
 import numpy as np
 
+
 def stamp_board(board, number):
     for i in range(len(board)):
         for j in range(len(board[i])):
-
             if board[i][j] == number:
                 board[i][j] = -1
 
+
 def board_checker(board):
     has_won = True
-
     columns = board.sum(axis=0)
     rows = board.sum(axis=1)
-
     if (-5 in columns) or (-5 in rows):
         return True
     return False
+
 
 def stamp_and_check(boards, numbers):
     for cn in called_numbers:
@@ -26,6 +26,7 @@ def stamp_and_check(boards, numbers):
             print(board)
             if has_won:
                 return board, cn
+
 
 def process_winning_board(board, called_number):
     flat = board.reshape(-1)
