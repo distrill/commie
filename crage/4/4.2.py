@@ -59,9 +59,9 @@ class Board():
                 sum += val
         return sum
 
-def initializeBoards(file: TextIOWrapper):
+def initializeBoards(file: TextIOWrapper) -> set[Board]:
     twoBlankLineCount = 0
-    boards: list[Board] = []
+    boards: set[Board] = []
     currentBoardList: list[list[int]] = []
     while twoBlankLineCount != 2:
         line = file.readline().rstrip()
