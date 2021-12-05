@@ -24,24 +24,17 @@ class Line():
             #vertical
             x = self.start.x
             points: list[Point] = []
-            smallerY = self.start.y
-            largerY = self.end.y
-            if self.start.y > self.end.y:
-                largerY = self.start.y
-                smallerY = self.end.y
+            smallerY, largerY = min(self.start.y, self.end.y), max(self.start.y, self.end.y)
             for y in range(smallerY, largerY + 1):
                 points.append(Point(x, y))
             self.points = points
             return points
+
         elif self.start.y == self.end.y:
             #horizontal
             y = self.start.y
             points: list[Point] = []
-            smallerX = self.start.x
-            largerX = self.end.x
-            if self.start.x > self.end.x:
-                largerX = self.start.x
-                smallerX = self.end.x
+            smallerX, largerX = min(self.start.x, self.end.x), max(self.start.x, self.end.x)
             for x in range(smallerX, largerX + 1):
                 points.append(Point(x, y))
             self.points = points
@@ -94,5 +87,5 @@ def findIntersections(filename: str):
             if count > 1:
                 intersections+=1
         return intersections
-        
+
 print(findIntersections('./crage/5/input.txt'))

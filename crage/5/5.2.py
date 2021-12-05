@@ -24,11 +24,7 @@ class Line():
             #vertical
             x = self.start.x
             points: list[Point] = []
-            smallerY = self.start.y
-            largerY = self.end.y
-            if self.start.y > self.end.y:
-                largerY = self.start.y
-                smallerY = self.end.y
+            smallerY, largerY = min(self.start.y, self.end.y), max(self.start.y, self.end.y)
             for y in range(smallerY, largerY + 1):
                 points.append(Point(x, y))
             self.points = points
@@ -38,11 +34,7 @@ class Line():
             #horizontal
             y = self.start.y
             points: list[Point] = []
-            smallerX = self.start.x
-            largerX = self.end.x
-            if self.start.x > self.end.x:
-                largerX = self.start.x
-                smallerX = self.end.x
+            smallerX, largerX = min(self.start.x, self.end.x), max(self.start.x, self.end.x)
             for x in range(smallerX, largerX + 1):
                 points.append(Point(x, y))
             self.points = points
@@ -51,16 +43,8 @@ class Line():
         elif self.end.y - self.end.x == self.start.y - self.start.x:
             #diagonal up right
             points: list[Point] = []
-            smallerX = self.start.x
-            largerX = self.end.x
-            if self.start.x > self.end.x:
-                largerX = self.start.x
-                smallerX = self.end.x
-            smallerY = self.start.y
-            largerY = self.end.y
-            if self.start.y > self.end.y:
-                largerY = self.start.y
-                smallerY = self.end.y
+            smallerX, largerX = min(self.start.x, self.end.x), max(self.start.x, self.end.x)
+            smallerY, largerY = min(self.start.y, self.end.y), max(self.start.y, self.end.y)
             for x, y in zip(range(smallerX, largerX + 1), range(smallerY, largerY + 1)):
                 points.append(Point(x, y))
             self.points = points
@@ -69,16 +53,8 @@ class Line():
         elif self.end.y - self.start.y == self.start.x - self.end.x:
             #diagonal down right
             points: list[Point] = []
-            smallerX = self.start.x
-            largerX = self.end.x
-            if self.start.x > self.end.x:
-                largerX = self.start.x
-                smallerX = self.end.x
-            smallerY = self.start.y
-            largerY = self.end.y
-            if self.start.y > self.end.y:
-                largerY = self.start.y
-                smallerY = self.end.y
+            smallerX, largerX = min(self.start.x, self.end.x), max(self.start.x, self.end.x)
+            smallerY, largerY = min(self.start.y, self.end.y), max(self.start.y, self.end.y)
             x = smallerX
             y = largerY
             while x <= largerX and y >= smallerY:
