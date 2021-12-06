@@ -63,9 +63,7 @@ impl School {
     }
 }
 
-pub struct Day06 {
-    // fish: HashMap<u64, u64>,
-}
+pub struct Day06 {}
 
 impl Day06 {
     fn init_data(&self) -> School {
@@ -76,7 +74,6 @@ impl Day06 {
 
 impl Day<u64> for Day06 {
     fn new() -> Day06 {
-        // let data = self.init_data()
         Day06 {}
     }
 
