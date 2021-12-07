@@ -1,4 +1,3 @@
-use std::cell::RefCell;
 use std::collections::HashMap;
 
 use crate::day::Day;
@@ -53,19 +52,9 @@ impl Day<i32> for Day07 {
     }
 
     fn run_02(&self) -> i32 {
-        let memo = RefCell::new(HashMap::new());
         self.align_crabs(|x, y| {
             let diff = (x - y).abs();
-            let mut memo = memo.borrow_mut();
-            if memo.contains_key(&diff) {
-                return *memo.get(&diff).unwrap();
-            }
-            let mut sum = diff;
-            for i in 0..diff {
-                sum += i;
-            }
-            memo.insert(diff, sum);
-            sum
+            (diff * (diff + 1)) / 2
         })
     }
 }
