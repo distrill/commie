@@ -18,7 +18,6 @@ impl Day07 {
         F: Fn(i32, i32) -> i32,
     {
         let data = self.init_data();
-        // let data = self.init_data();
         let mut counts = HashMap::new();
 
         let mut max_sum = 0;
@@ -59,7 +58,6 @@ impl Day<i32> for Day07 {
             for i in 0..diff {
                 sum += i;
             }
-            // println!("x: {}, y: {}, sum: {}", x, y, sum);
             sum
         })
     }
