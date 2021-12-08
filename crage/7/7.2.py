@@ -9,7 +9,8 @@ def minimizeCrabFuel(filename: str):
             for j in range(maxCrabPosition + 1):
                 if j in positionCounts:
                     distance = abs(j - i)
-                    currentTotal += abs(positionCounts[j] * (distance) * (distance + 1) / 2)
+                    fuelUsedAtPosition = (distance) * (distance + 1) / 2
+                    currentTotal += abs(positionCounts[j] * fuelUsedAtPosition)
             if currentTotal < currentMinDistance:
                 currentMinDistance = currentTotal
             currentTotal = 0
