@@ -72,4 +72,4 @@ if __name__ == "__main__":
                 if set(code) == set(f):
                     decoded_output.append(decode_lookup[f])
         total += int("".join(decoded_output))
-print(total)  
+    print(total)
