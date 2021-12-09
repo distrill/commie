@@ -1,6 +1,7 @@
 import numpy as np
 from queue import Queue
 
+
 def pad_with(vector, pad_width, iaxis, kwargs):
     pad_value = kwargs.get('padder', 10)
     vector[:pad_width[0]] = pad_value
@@ -40,9 +41,6 @@ class Basin():
         return len(self.points_within)
 
 
-
-
-
 if __name__ == "__main__":
 
     with open('input.txt') as f:
@@ -60,7 +58,7 @@ if __name__ == "__main__":
             zone = lines[i][j]
             if zone < lines[i + 1][j] and zone < lines[i-1][j]:
                 if zone < lines[i][j-1] and zone < lines[i][j+1]:
-                    basins.append(Basin(zone, [i,j], lines))
+                    basins.append(Basin(zone, [i, j], lines))
 
     basin_sizes = [basins[i].get_size() for i in range(len(basins))]
     top_three = sorted(basin_sizes, reverse=True)[:3]
