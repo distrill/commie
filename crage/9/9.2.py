@@ -30,7 +30,7 @@ def getBasin(node: Node):
         queue = [node]
         node.inBasin = True
         while len(queue) > 0:
-            current = queue.pop()
+            current = queue.pop(0)
             for adjacent in current.adjacents:
                 if adjacent.viable == True and not adjacent.inBasin and adjacent not in visited:
                     adjacent.inBasin = True
