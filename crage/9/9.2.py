@@ -10,12 +10,12 @@ def getBasins(filename: str):
         nodeMap: list[list[Node]] = [[*map(lambda x: Node(int(x)), list(line.strip()))]  for line in file.readlines()]
         for y in range(len(nodeMap)):
             for x in range(len(nodeMap[y])):
-                setAdjacents(nodeMap, x, y)
+                nodeMap[y][x].adjacents = getAdjacents(nodeMap, x, y)
         basins: dict[int, list[Node]] = {}
         basinCount = 0
         for y in range(len(nodeMap)):
             for x in range(len(nodeMap[y])):
-                basin = getBasin(nodeMap[y][x], x, y)
+                basin = getBasin(nodeMap[y][x])
                 if len(basin) > 0:
                     basins[basinCount] = basin
                     basinCount += 1
@@ -24,7 +24,7 @@ def getBasins(filename: str):
         return basinLengths[0] * basinLengths[1] * basinLengths[2]
         
 
-def getBasin(node: Node, x: int, y: int):
+def getBasin(node: Node):
     if node.viable and not node.inBasin:
         visited = [node]
         queue = [node]
@@ -40,12 +40,9 @@ def getBasin(node: Node, x: int, y: int):
     else:
         return []
 
-def setAdjacents(area: list[list[Node]], x: int, y: int):
+def getAdjacents(area: list[list[Node]], x: int, y: int):
     adjacentCoords = [(x - 1, y), (x + 1, y), (x, y + 1), (x, y - 1)]
-    for adjacentCoord in adjacentCoords:
-        adjacentX, adjacentY = adjacentCoord
-        if isValidCoord(area, adjacentX, adjacentY):
-            area[y][x].adjacents.append(area[adjacentY][adjacentX])
+    return [*filter(lambda n: n.val != -1, [area[adjacentY][adjacentX] if isValidCoord(area, adjacentX, adjacentY) else Node(-1) for adjacentX, adjacentY in adjacentCoords])]
 
 def isValidCoord(area: list[list[Node]], x: int, y: int):
     if x < 0 or y < 0 or y >= len(area) or x >= len(area[y]):
