@@ -42,7 +42,7 @@ def getBasin(node: Node):
 
 def getAdjacents(area: list[list[Node]], x: int, y: int):
     adjacentCoords = [(x - 1, y), (x + 1, y), (x, y + 1), (x, y - 1)]
-    return [*filter(lambda n: n.val != -1, [area[adjacentY][adjacentX] if isValidCoord(area, adjacentX, adjacentY) else Node(-1) for adjacentX, adjacentY in adjacentCoords])]
+    return [area[adjacentY][adjacentX] for adjacentX, adjacentY in adjacentCoords if isValidCoord(area, adjacentX, adjacentY)]
 
 def isValidCoord(area: list[list[Node]], x: int, y: int):
     if x < 0 or y < 0 or y >= len(area) or x >= len(area[y]):
