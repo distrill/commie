@@ -1,7 +1,7 @@
 def getLocalMinima(filename: str):
     with open(filename, 'r') as file:
         numberLines: list[list[int]] = [[*map(int, list(line.strip()))]  for line in file.readlines()]
-        minima: list[int] = [*filter(lambda x: x >= 0, [numberLines[y][x] if validateMinimum(numberLines, x, y) else -1 for y in range(len(numberLines)) for x in range(len(numberLines[y]))])]
+        minima: list[int] = [numberLines[y][x] for y in range(len(numberLines)) for x in range(len(numberLines[y])) if validateMinimum(numberLines, x, y)]
         return sum(minima) + len(minima)
 
 def validateMinimum(area: list[list[int]], x: int, y: int):
