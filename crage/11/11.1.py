@@ -5,7 +5,7 @@ class Octopus():
         self.adjacents: list[Octopus] = []
 
 def getAdjacents(area: list[list[Octopus]], x: int, y: int):
-    adjacentCoords = [(x - 1, y), (x + 1, y), (x, y + 1), (x, y - 1), (x - 1, y - 1), (x - 1, y + 1), (x + 1, y - 1), (x + 1, y + 1)]
+    adjacentCoords = [(adjX, adjY) for adjX in range(x - 1, x + 2) for adjY in range(y - 1, y + 2) if not (adjX == x and adjY == y)]
     return [area[adjacentY][adjacentX] for adjacentX, adjacentY in adjacentCoords if isValidCoord(area, adjacentX, adjacentY)]
 
 def isValidCoord(area: list[list[Octopus]], x: int, y: int):
