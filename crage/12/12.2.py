@@ -25,8 +25,8 @@ def getUniquePaths(filename: str):
 
             for adjacent in currentPathEnd.adjacents:
                 if adjacent.val != "start":
-                    newVisitedSmallCaveCounts = dict(currentPath.visitedSmallCaveCounts)
                     if not currentPath.visitedSmallTwice or not adjacent.isSmall or (adjacent.isSmall and adjacent.val not in currentPath.visitedSmallCaveCounts):
+                        newVisitedSmallCaveCounts = dict(currentPath.visitedSmallCaveCounts)
                         newPathVisitedTwice = currentPath.visitedSmallTwice
                         if adjacent.val not in currentPath.visitedSmallCaveCounts and adjacent.isSmall and adjacent.val != 'end':
                             newVisitedSmallCaveCounts[adjacent.val] = 1
@@ -44,7 +44,6 @@ def initializeCaves(startEnds: list[str]) -> dict[str, Cave]:
     caveMap: dict[str, Cave] = {}
     for startEnd in startEnds:
         start, end = startEnd.split("-")
-
         startCave = Cave(isSmallCave(start), start)
         endCave = Cave(isSmallCave(end), end)
         if start not in caveMap:
