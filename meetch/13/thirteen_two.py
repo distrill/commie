@@ -68,5 +68,9 @@ if __name__ == "__main__":
     for fold in folds:
         game_board = make_fold(game_board, fold)
 
+    # pretty printing
+    answer = []
     for row in game_board.tolist():
-        print(row)
+        answer.append(["#" if x == 1 else "." for x in row])
+    for item in answer:
+        print(item)
